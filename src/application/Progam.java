@@ -1,12 +1,17 @@
 package application;
+import model.dao.DaoFactory;
+import model.dao.SellerDao;
+import model.dao.impl.SellerDaoJDBC;
 import model.entities.*;
 
 public class Progam {
 
 	public static void main(String[] args) {
-		Departament  obj = new Departament();
+		SellerDao sellerdao = DaoFactory.createSellerDao();
 		
-		System.out.println(obj);
+		Seller seller = sellerdao.findByidI(3);
+		
+		System.out.println(seller);
 
 	}
 
