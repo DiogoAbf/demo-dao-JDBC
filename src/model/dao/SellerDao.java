@@ -9,8 +9,10 @@ public interface SellerDao {
 	void insert(SellerDao obj);
 	void update(SellerDao obj);
 	void deleteById(SellerDao obj);
-	Seller findByidI(Integer id);
+	Seller findById(Integer id);
+	List<Seller> findByDepartament(Departament departament);
 	List<SellerDao> findAll();
+	void insert(Seller obj);
 	
 
 }
