@@ -1,4 +1,6 @@
 package application;
+
+import java.util.Date;
 import java.util.List;
 
 import model.dao.DaoFactory;
@@ -11,16 +13,14 @@ public class Progam {
 	public static void main(String[] args) {
 		SellerDao sellerdao = DaoFactory.createSellerDao();
 		
+		Departament departament = new Departament(2,null);
+		Seller newSeller = new Seller(null,"Greg","grege@gmail.com", new Date(),4000.0,departament);
+
+		
 	
 		
-		List<Seller> list = sellerdao.findAll();
-		
-		for(Seller obj: list) {
-			
-			System.out.println(obj);
-		}
-		
-		
+		sellerdao.insert(newSeller);
+		System.out.println(	sellerdao.findById(10));
 
 	}
 
