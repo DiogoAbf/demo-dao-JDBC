@@ -19,8 +19,11 @@ public class Progam {
 		
 	
 		
-		sellerdao.insert(newSeller);
-		System.out.println(	sellerdao.findById(10));
+Seller seller = sellerdao.findById(1);
+seller.setName("marcos");
+sellerdao.update(seller);
+
+System.out.println(seller.getName());
 
 	}
 
