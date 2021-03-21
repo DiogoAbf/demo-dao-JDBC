@@ -108,21 +108,14 @@ public class SellerDaoJDBC implements SellerDao {
 	}
 
 	@Override
-	public void insert(SellerDao obj) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void update(Seller obj) {
 		{
 			PreparedStatement st = null;
 
 			try {
-				st = conn.prepareStatement("UPDATE seller\r\n" + 
-						"SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ?\r\n" + 
-						"WHERE Id = ?"
-						);
+				st = conn.prepareStatement("UPDATE seller\r\n"
+						+ "SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ?\r\n"
+						+ "WHERE Id = ?");
 
 				st.setString(1, obj.getName());
 				st.setString(2, obj.getEmail());
@@ -135,19 +128,28 @@ public class SellerDaoJDBC implements SellerDao {
 
 			} catch (SQLException e) {
 				throw new DbException(e.getMessage());
-			}
-			finally {
+			} finally {
 				DB.closeStatement(st);
 			}
 
 		}
-		
+
 	}
 
 	@Override
-	public void deleteById(SellerDao obj) {
-		// TODO Auto-generated method stub
+	public void deleteById(Seller obj) {
+		PreparedStatement st = null;
 
+		try {
+			st = conn.prepareStatement("DELETE FROM seller\r\n" + "WHERE Id = ?");
+
+			
+			st.setInt(1, obj.getId());
+			
+			st.executeUpdate();
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
 	}
 
 	@Override
@@ -212,16 +214,14 @@ public class SellerDaoJDBC implements SellerDao {
 				}
 				DB.closeResultSet(rs);
 
-			}
-			else {
+			} else {
 				throw new DbException("Noe eows affected");
-				
+
 			}
 
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
-		}
-		finally {
+		} finally {
 			DB.closeStatement(st);
 		}
 
