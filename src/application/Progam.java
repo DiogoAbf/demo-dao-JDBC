@@ -11,9 +11,9 @@ public class Progam {
 	public static void main(String[] args) {
 		SellerDao sellerdao = DaoFactory.createSellerDao();
 		
-		Departament departament = new Departament(2,null);
+	
 		
-		List<Seller> list = sellerdao.findByDepartament(departament);
+		List<Seller> list = sellerdao.findAll();
 		
 		for(Seller obj: list) {
 			
